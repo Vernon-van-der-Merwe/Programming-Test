@@ -1,0 +1,65 @@
+<div class="container-fluid main-landing-page">
+  <div
+    class="row justify-content-center align-items-center text-center"
+    style="min-height: 60vh"
+  >
+    <div class="col-5 pb-5">
+      <h1>Search for a Github Account</h1>
+      <div class="form-group pt-3 pb-2">
+        <input
+          type="text"
+          class="form-control mb-3"
+          id="userSearch"
+          aria-describedby="searchHelp"
+          placeholder="Username"
+          [(ngModel)]="username"
+        />
+        <small id="searchHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+      <button type="submit" class="btn btn-primary mt-2" (click)="search()">
+        Search
+      </button>
+    </div>
+  </div>
+  <div class="container">
+    <div
+      class="row justify-content-center align-items-center text-center"
+      style="min-height: 40vh"
+    >
+      <div class="col-4 pb-3" *ngFor="let user of users">
+        <div class="card" style="background-color: black">
+          <div class="card-header">
+            <img
+              src="{{ user.avatar_url }}"
+              alt="Avatar"
+              style="width: 80px; border-radius: 50%"
+            />
+          </div>
+          <div class="card-body">
+            <h3 style="color: white">{{ user.login }}</h3>
+            <div class="row pt-3 pb-3">
+              <div class="col">
+                <button
+                  class="btn btn-secondary"
+                  routerLink="/user-changes/{{ user.login }}"
+                >
+                  User Changes
+                </button>
+              </div>
+              <div class="col">
+                <button
+                  class="btn btn-primary"
+                  routerLink="/user/{{ user.login }}"
+                >
+                  View Repos
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
